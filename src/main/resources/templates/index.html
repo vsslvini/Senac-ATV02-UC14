@@ -1,49 +1,56 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html xmlns="w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Home</title>
-        <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
-        <link rel="stylesheet" th:href="@{/css/style.css}" />
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <header th:insert="navBar.html"></header>
-        <div id="area-filmes">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>Todos os filmes</h1>
-                        <table class="table table-hover table-striped table-responsive-md">
-                            <thead>
-                                <tr>
-                                    <th  scope="col">ID</th>
-                                    <th  scope="col">NOME</th>
-                                    <th  scope="col">SINOPSE</th>
-                                    <th  scope="col">GÊNERO</th>
-                                    <th  scope="col">ANO DE LANÇAMENTO </th>
-                                    <th  scope="col">AVALIAR</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="filme : ${listaFilmes}">
-                                    <td th:text="${filme.id}"></td>
-                                    <td th:text="${filme.nome}"></td>
-                                    <td th:text="${filme.sinopse}"></td>
-                                    <td th:text="${filme.genero}"></td>
-                                    <td th:text="${filme.data}"></td>
-                                    <!-- <td><a th:href="@{'/avaliar?id=' + ${filme.id}}">Avaliar</a></td> -->
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header th:insert="navBar.html"></header>
+    <div id="area-filmes">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Todos os filmes</h1>
+                    <table class="table table-hover table-striped table-responsive-md">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">NOME</th>
+                                <th scope="col">SINOPSE</th>
+                                <th scope="col">GÊNERO</th>
+                                <th scope="col">ANO DE LANÇAMENTO </th>
+                                <th scope="col">AVALIAR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="filme : ${listaFilmes}">
+                                <td th:text="${filme.id}"></td>
+                                <td th:text="${filme.nome}"></td>
+                                <td th:text="${filme.sinopse}"></td>
+                                <td th:text="${filme.genero}"></td>
+                                <td th:text="${filme.data}"></td>
+                                <td>
+                                    <a th:href="@{/avaliacoes/{id}(id=${filme.id})}" class="btn btn-primary">Avaliar</a>
+                                    <a th:href="@{ /deletarFilme/{id}(id=${filme.id})}" class="btn btn-danger">
+                                        Excluir</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
         </div>
 
-        <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-        <script th:src="@{/js/script.js}"></script>
-    </body>
+    </div>
+
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+
 </html>

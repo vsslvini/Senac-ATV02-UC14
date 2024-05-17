@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
-
 import com.vinicius.atv002.data.AvaliacaoEntity;
 import com.vinicius.atv002.data.AvaliacaoRepository;
 import com.vinicius.atv002.data.FilmeEntity;
@@ -50,6 +49,11 @@ public class FilmeServices {
         avaliacao.setFilme(filme);
         avaliacaoRepository.save(avaliacao);
         return filme;
+    }
+
+    public void deletarFilme(Integer id) {
+        FilmeEntity filme = getFilmeId(id);
+        filmeRepository.deleteById(filme.getId());
     }
 
 }

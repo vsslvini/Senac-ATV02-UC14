@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html xmlns="w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Cadastre seu filme</title>
+        <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header th:insert="navBar.html"></header>
+        <div id="form-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 cadForm">
+                        <h1>CADASTRE O FILME</h1>
+                        <form th:action="@{/cadastroFilme}" method="POST">
+                            <!-- <input class="form-control"  required pattern="[0-9]+$" th:field="${filme.id}" id="idFilme" placeholder="ID do filme"> -->
+                            <input class="form-control" required th:field="${filme.nome}" id="nomeFilme" placeholder="Nome do filme">
+                            <input class="form-control" required th:field="${filme.sinopse}" id="sinopse" placeholder="Sinopse do filme">
+                            <input class="form-control" required th:field="${filme.genero}" id="generoFilme" placeholder="Gênero do filme">
+                            <input class="form-control" required
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" th:field="${filme.data}" id="dataFilme" placeholder="Data de lançamento">
+                            <button class="btn btn-primary" type="submit">Cadastrar Filme</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+    </body>
+</html>

@@ -3,7 +3,6 @@ package com.vinicius.atv002.services;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.vinicius.atv002.data.AvaliacaoEntity;
 import com.vinicius.atv002.data.AvaliacaoRepository;
 
@@ -20,7 +19,12 @@ public class AvaliacaoService {
     }
 
     public List<AvaliacaoEntity> listatTodasAvaliacoes() {
-        return avaliacaoRepository.findAll();
+        List<AvaliacaoEntity> avaliacoes = avaliacaoRepository.findAll();
+        return avaliacoes;
     }
 
+    public List<AvaliacaoEntity> listarAvaliacaoId(Integer id) {
+        List<AvaliacaoEntity> avaliacoes = avaliacaoRepository.findByFilmeId(id);
+        return avaliacoes;
+    }
 }

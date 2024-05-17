@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Avaliar Filme</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header th:insert="navBar.html"></header>
+    <div id="main-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md">
+                    <h1>Detalhes do Filme</h1>
+                    <div th:if="${filme != null}">
+                        <h3>ID: <span th:text="${filme.id}"></span></h3>
+                        <h3>Nome: <span th:text="${filme.nome}"></span></h3>
+                        <h3>Sinopse: <span th:text="${filme.sinopse}"></span></h3>
+                        <h3>Gênero: <span th:text="${filme.genero}"></span></h3>
+                        <h3>Data de Lançamento: <span th:text="${filme.data}"></span></h3>
+                        <!-- Adicione mais detalhes do filme conforme necessário -->
+                    </div>
+                    <div th:if="${filme == null}">
+                        <p>Filme não encontrado</p>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <form class="form-floating" th:action="@{/avaliacoes/{id}(id=${filme.id})}" th:object="${avaliacao}"
+                        method="post">
+                        <input required th:field="*{email}" type="email" class="form-control" id="floatingInputValue"
+                            value="test@example.com">
+                        <label for="floatingInputValue">Seu melhor e-mail</label>
+
+                        <textarea required th:field="*{analise}" class="form-control" id="floatingTextarea"
+                            style="height: 200px; margin-bottom: 30px;"></textarea>
+                        <label for="floatingTextarea">Deixe aqui sua avaliação</label>
+
+                        <button class="btn btn-primary" type="submit">Publicar avaliação</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="avaliacao-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md">
+                    <h1>Avaliações</h1>
+                    <ul th:if="${filme != null}">
+                        <li class="avaliacao-li" th:each="avaliacao : ${avaliacoes}">
+                            <span class="email" th:text="${avaliacao.email}"></span>
+                            <span class="conteudo" th:text="${avaliacao.analise}"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+
+</html>
