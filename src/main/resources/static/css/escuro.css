@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(75, 74, 74);
+    color: white;
+}
+
+.float {
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    color: black;
+    text-align: center;
+    right: 0;
+    bottom: 0;
+    margin: 5px;
+    transition: .5s;
+}
